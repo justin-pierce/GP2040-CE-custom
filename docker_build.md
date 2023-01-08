@@ -8,3 +8,5 @@ If you want to extract docker build functionality from this repo, you'll need
  - [docker-compose.yml](docker-compose.yml)
     - You probably want to remove the `env_file` line -- this is only being used by the notification system mentioned above
  - [Dockerfile](Dockerfile)
+
+ Then run `docker-compose up --build` from the repo's directory. 
