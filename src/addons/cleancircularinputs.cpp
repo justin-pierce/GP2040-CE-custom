@@ -18,7 +18,7 @@ void CleanCircularInputs::setup()
 {
     // Setup Clean Circular Inputs
     // BoardOptions boardOptions = Storage::getInstance().getBoardOptions();
-
+    isActive = false;
     lastCleanDpad = 0;
     lastRealDpad = 0;
     // cleanInputDelay = boardOptions.cleanCircularInputsDelay;
@@ -27,11 +27,16 @@ void CleanCircularInputs::setup()
     // cleanInputJitter = 5;
     nextTimer = 0;
 
+    pinButtonToggleActive = 22;
     pinActivityLED = 25;
 
-    gpio_init(pinActivityLED);
-    gpio_set_dir(pinActivityLED, GPIO_OUT);
-    gpio_put(pinActivityLED, 0);
+    gpio_init(pinButtonToggleActive);             // Initialize pin
+    gpio_set_dir(pinButtonToggleActive, GPIO_IN); // Set as INPUT
+    gpio_pull_up(pinButtonToggleActive);          // Set as PULLUP
+
+    gpio_init(pinActivityLED);              // Initialize pin
+    gpio_set_dir(pinActivityLED, GPIO_OUT); // Set as OUTPUT
+    gpio_put(pinActivityLED, 0);            // Turn off
 
     // srand(getMillis());
 }
@@ -104,6 +109,28 @@ void CleanCircularInputs::ResetTimer()
 
 void CleanCircularInputs::process()
 {
+    // detect if ToggleActive button has been pressed
+    if(gpio_get(pinButtonToggleActive) && idlePinButtonToggleActive)
+    {
+        isActive = !isActive;
+        
+        // clear input queue
+        while(!inputQueue.empty()) inputQueue.pop();
+
+        // disable LED
+        gpio_put(pinActivityLED, 0);
+
+        // so we can wait until next distinct press
+        idlePinButtonToggleActive = false;
+    }
+
+    // check if they've let go of button
+    if(!gpio_get(pinButtonToggleActive))
+        idlePinButtonToggleActive = true;
+
+    if(!isActive)
+        return;
+
     Gamepad * gamepad = Storage::getInstance().GetGamepad();
     BoardOptions boardOptions = Storage::getInstance().getBoardOptions();
     currentDpad = gamepad->state.dpad & GAMEPAD_MASK_DPAD;

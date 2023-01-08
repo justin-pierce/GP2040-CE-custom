@@ -28,9 +28,12 @@ private:
 	// settings
 	uint32_t cleanInputDelay;
 	uint32_t cleanInputJitter;
+	uint8_t pinButtonToggleActive;
 	uint8_t pinActivityLED;
 
 	// working vars
+	bool isActive;
+	bool idlePinButtonToggleActive;
 	uint16_t lastCleanDpad;
 	uint16_t lastRealDpad;
 	uint16_t currentDpad;
