@@ -3,15 +3,18 @@
 echo "Building GP2040-CE"
 
 # prep files
-mkdir artifacts
+mkdir -p artifacts
 chmod +x /usr/src/app/tools/makefsdata
 
 # build web configurator
+nodever=$(node -v)
+echo "Building Web Configurator with Node $nodever"
 cd www
-# npm install # only need to run this once -- can comment out after first run
+npm install # only need to run this once -- can comment out after first run
 npm run build
 
 # build firmware
+echo "Building Firmware"
 cd -
 PICO_SDK_FETCH_FROM_GIT=true cmake -B build/ -DCMAKE_BUILD_TYPE=Release
 cmake --build build/
