@@ -1,6 +1,6 @@
 # GP2040-CE Docker Build
 
-If you want to extract docker build functionality from this repo, you'll need
+If you want to extract docker build functionality from this repo, you'll need a basic understanding of Docker and:
 
  - [build-tools/build.sh](build-tools/build.sh)
     - For your first build, you'll want to uncomment `npm install` -- after your first build you can comment it out again.
