@@ -6,4 +6,7 @@ configs/MyBoard
 /www/package-lock.json
 build/
 **/generated
+
+# Justin's additions
 *.env
+*.uf2
