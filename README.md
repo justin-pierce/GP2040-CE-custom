@@ -6,7 +6,7 @@ Full documentation can be found at <https://www.gp2040-ce.info>.
 
 ## Features added/changed in this repo
 
-* Dockerized build setup
+* [Dockerized build setup](docker_build.md)
 * Clean Circular Inputs add-on 
 * Swap L1/R1 and L2/R2 in a couple display layouts
 
