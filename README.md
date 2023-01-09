@@ -4,7 +4,13 @@ GP2040-CE is a gamepad firmware for the Raspberry Pi Pico and other boards based
 
 Full documentation can be found at <https://www.gp2040-ce.info>.
 
-## Features
+## Features added/changed in this repo
+
+* Dockerized build setup
+* Clean Circular Inputs add-on 
+* Swap L1/R1 and L2/R2 in a couple display layouts
+
+## Standard Features
 
 * Selectable input modes - XInput, DirectInput, and Nintendo Switch
 * Overclocked polling rate for less than 1 ms of input latency in all modes
