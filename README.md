@@ -4,7 +4,7 @@ GP2040-CE is a gamepad firmware for the Raspberry Pi Pico and other boards based
 
 Full documentation can be found at <https://www.gp2040-ce.info>.
 
-## Features added/changed in this repo
+## Custom features added/changed in this repo that aren't in vanilla GP2040-CE
 
 * [Dockerized build setup](docker_build.md)
 * Clean Circular Inputs add-on 
