@@ -3,7 +3,8 @@
 	url = https://github.com/FeralAI/GP2040-Config-PicoFightingBoard.git
 [submodule "www"]
 	path = www
-	url = https://github.com/OpenStickCommunity/WebConfigurator.git
+	url = https://github.com/justin-pierce/WebConfigurator.git
+	branch = main
 [submodule "MPG"]
 	path = MPG
 	url = https://github.com/OpenStickCommunity/MPG.git
