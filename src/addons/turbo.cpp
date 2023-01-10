@@ -20,11 +20,11 @@ void TurboInput::setup()
     gpio_set_dir(boardOptions.pinButtonTurbo, GPIO_IN); // Set as INPUT
     gpio_pull_up(boardOptions.pinButtonTurbo);          // Set as PULLUP
     
-    if (boardOptions.pinTurboLED != -1) {
-        gpio_init(boardOptions.pinTurboLED);
-        gpio_set_dir(boardOptions.pinTurboLED, GPIO_OUT);
-        gpio_put(boardOptions.pinTurboLED, 1);
-    }
+    // if (boardOptions.pinTurboLED != -1) {
+    //     gpio_init(boardOptions.pinTurboLED);
+    //     gpio_set_dir(boardOptions.pinTurboLED, GPIO_OUT);
+    //     gpio_put(boardOptions.pinTurboLED, 1);
+    // }
 
     bDebState = false;
     uDebTime = getMillis();
@@ -97,13 +97,13 @@ void TurboInput::process()
 
 
     // Set TURBO LED if a button is going or turbo is too fast
-    if ( boardOptions.pinTurboLED != -1 ) {
-        if ((gamepad->state.buttons & buttonsEnabled) && !bTurboFlicker) {
-            gpio_put(boardOptions.pinTurboLED, 0);
-        } else {
-            gpio_put(boardOptions.pinTurboLED, 1);
-        }	
-    }
+    // if ( boardOptions.pinTurboLED != -1 ) {
+    //     if ((gamepad->state.buttons & buttonsEnabled) && !bTurboFlicker) {
+    //         gpio_put(boardOptions.pinTurboLED, 0);
+    //     } else {
+    //         gpio_put(boardOptions.pinTurboLED, 1);
+    //     }	
+    // }
 
     // disable button during turbo flicker
     if (bTurboFlicker) { 

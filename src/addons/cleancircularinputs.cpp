@@ -17,7 +17,8 @@ bool CleanCircularInputs::available() {
 void CleanCircularInputs::setup()
 {
     // Setup Clean Circular Inputs
-    // BoardOptions boardOptions = Storage::getInstance().getBoardOptions();
+    BoardOptions boardOptions = Storage::getInstance().getBoardOptions();
+
     isActive = false;
     lastCleanDpad = 0;
     lastRealDpad = 0;
@@ -34,9 +35,16 @@ void CleanCircularInputs::setup()
     gpio_set_dir(pinButtonToggleActive, GPIO_IN); // Set as INPUT
     gpio_pull_up(pinButtonToggleActive);          // Set as PULLUP
 
-    gpio_init(pinActivityLED);              // Initialize pin
-    gpio_set_dir(pinActivityLED, GPIO_OUT); // Set as OUTPUT
-    gpio_put(pinActivityLED, 0);            // Turn off
+    // steal turbo LED pin until we get web configurator
+    pinActivityLED = boardOptions.pinTurboLED;
+    if (pinActivityLED != -1)
+    {
+        gpio_init(pinActivityLED);              // Initialize pin
+        gpio_set_dir(pinActivityLED, GPIO_OUT); // Set as OUTPUT
+        gpio_put(pinActivityLED, isActive ? 1: 0);            // Set initial value
+    }
+
+    
 
     // srand(getMillis());
 }
@@ -117,8 +125,8 @@ void CleanCircularInputs::process()
         // clear input queue
         while(!inputQueue.empty()) inputQueue.pop();
 
-        // disable LED
-        gpio_put(pinActivityLED, 0);
+        // update LED
+        gpio_put(pinActivityLED, isActive ? 1 : 0);
 
         // so we can wait until next distinct press
         idlePinButtonToggleActive = false;
@@ -145,11 +153,11 @@ void CleanCircularInputs::process()
         if(!inputQueue.empty())
         {
             ResetTimer();
-            gpio_put(pinActivityLED, 1);
+            gpio_put(pinActivityLED, 0);
         }
         else
         {
-            gpio_put(pinActivityLED, 0);
+            gpio_put(pinActivityLED, 1);
         }
     }    
 
