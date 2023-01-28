@@ -3,7 +3,6 @@
 
 #include "gpaddon.h"
 #include <queue>
-// #include "GamepadEnums.h"
 
 #ifndef CLEAN_CIRCULAR_INPUTS_ENABLED
 #define CLEAN_CIRCULAR_INPUTS_ENABLED true

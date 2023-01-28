@@ -89,6 +89,19 @@ uint16_t CleanCircularInputs::GetInputForSequence(uint16_t first, uint16_t secon
     {
         return 0;
     }    
+
+    // see if we can adopt clean switch case formatting
+
+    // can probably do this: https://stackoverflow.com/questions/8644096/multiple-conditions-in-switch-case
+
+    // switch (gamepad->options.inputMode)
+	// {
+	// 	case INPUT_MODE_HID:    statusBar += "DINPUT"; break;
+	// 	case INPUT_MODE_SWITCH: statusBar += "SWITCH"; break;
+	// 	case INPUT_MODE_XINPUT: statusBar += "XINPUT"; break;
+	// 	case INPUT_MODE_CONFIG: statusBar += "CONFIG"; break;
+    //  default: 0; 
+	// }
 }
 
 void CleanCircularInputs::ResetTimer()
@@ -120,6 +133,17 @@ void CleanCircularInputs::process()
     // detect if ToggleActive button has been pressed
     if(gpio_get(pinButtonToggleActive) && idlePinButtonToggleActive)
     {
+        // BoardOptions boardOptions = Storage::getInstance().getBoardOptions();
+
+        // boardOptions.showDisplayMenu = !boardOptions.showDisplayMenu;
+
+        // update LED to reflect state
+        // gpio_put(pinActivityLED, boardOptions.showDisplayMenu ? 1 : 0);
+
+        // Storage::getInstance().setBoardOptions(boardOptions);
+
+
+
         isActive = !isActive;
         
         // clear input queue

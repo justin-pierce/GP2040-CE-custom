@@ -73,85 +73,86 @@ void I2CDisplayAddon::process() {
 		drawSplashScreen(Storage::getInstance().GetSplashMode(), (uint8_t *)splashChoice, 90);
 	} else {
 		drawStatusBar(gamepad);
-		switch (Storage::getInstance().GetButtonLayout())
-		{
-			case BUTTON_LAYOUT_STICK:
-				drawArcadeStick(8, 28, 8, 2);
-				break;
-			case BUTTON_LAYOUT_STICKLESS:
-				drawStickless(8, 20, 8, 2);
-				break;
-			case BUTTON_LAYOUT_BUTTONS_ANGLED:
-				drawWasdBox(8, 28, 7, 3);
-				break;
-			case BUTTON_LAYOUT_BUTTONS_BASIC:
-				drawUDLR(8, 28, 8, 2);
-				break;
-			case BUTTON_LAYOUT_KEYBOARD_ANGLED:
-				drawKeyboardAngled(18, 28, 5, 2);
-				break;
-			case BUTTON_LAYOUT_KEYBOARDA:
-				drawMAMEA(8, 28, 10, 1);
-				break;
-			case BUTTON_LAYOUT_DANCEPADA:
-				drawDancepadA(39, 12, 15, 2);
-				break;
-			case BUTTON_LAYOUT_TWINSTICKA:
-				drawTwinStickA(8, 28, 8, 2);
-				break;
-			case BUTTON_LAYOUT_BLANKA:
-				drawBlankA(0, 0, 0, 0);
-				break;
-			case BUTTON_LAYOUT_VLXA:
-				drawVLXA(7, 28, 7, 2);
-				break;
-		}
+		drawText(0, 3, "Justin's cool menu!");
+		// switch (Storage::getInstance().GetButtonLayout())
+		// {
+		// 	case BUTTON_LAYOUT_STICK:
+		// 		drawArcadeStick(8, 28, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_STICKLESS:
+		// 		drawStickless(8, 20, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_BUTTONS_ANGLED:
+		// 		drawWasdBox(8, 28, 7, 3);
+		// 		break;
+		// 	case BUTTON_LAYOUT_BUTTONS_BASIC:
+		// 		drawUDLR(8, 28, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_KEYBOARD_ANGLED:
+		// 		drawKeyboardAngled(18, 28, 5, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_KEYBOARDA:
+		// 		drawMAMEA(8, 28, 10, 1);
+		// 		break;
+		// 	case BUTTON_LAYOUT_DANCEPADA:
+		// 		drawDancepadA(39, 12, 15, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_TWINSTICKA:
+		// 		drawTwinStickA(8, 28, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_BLANKA:
+		// 		drawBlankA(0, 0, 0, 0);
+		// 		break;
+		// 	case BUTTON_LAYOUT_VLXA:
+		// 		drawVLXA(7, 28, 7, 2);
+		// 		break;
+		// }
 
-		switch (Storage::getInstance().GetButtonLayoutRight())
-		{
-			case BUTTON_LAYOUT_ARCADE:
-				drawArcadeButtons(8, 28, 8, 2);
-				break;
-			case BUTTON_LAYOUT_STICKLESSB:
-				drawSticklessButtons(8, 20, 8, 2);
-				break;
-			case BUTTON_LAYOUT_BUTTONS_ANGLEDB:
-				drawWasdButtons(8, 28, 7, 3);
-				break;
-			case BUTTON_LAYOUT_VEWLIX:
-				drawVewlix(8, 28, 8, 2);
-				break;
-			case BUTTON_LAYOUT_VEWLIX7:
-				drawVewlix7(8, 28, 8, 2);
-				break;
-			case BUTTON_LAYOUT_CAPCOM:
-				drawCapcom(6, 28, 8, 2);
-				break;
-			case BUTTON_LAYOUT_CAPCOM6:
-				drawCapcom6(16, 28, 8, 2);
-				break;
-			case BUTTON_LAYOUT_SEGA2P:
-				drawSega2p(8, 28, 8, 2);
-				break;
-			case BUTTON_LAYOUT_NOIR8:
-				drawNoir8(8, 28, 8, 2);
-				break;
-			case BUTTON_LAYOUT_KEYBOARDB:
-				drawMAMEB(68, 28, 10, 1);
-				break;
-			case BUTTON_LAYOUT_DANCEPADB:
-				drawDancepadB(39, 12, 15, 2);
-				break;
-			case BUTTON_LAYOUT_TWINSTICKB:
-				drawTwinStickB(100, 28, 8, 2);
-				break;
-			case BUTTON_LAYOUT_BLANKB:
-				drawSticklessButtons(0, 0, 0, 0);
-				break;
-			case BUTTON_LAYOUT_VLXB:
-				drawVLXB(6, 28, 7, 2);
-				break;
-		}
+		// switch (Storage::getInstance().GetButtonLayoutRight())
+		// {
+		// 	case BUTTON_LAYOUT_ARCADE:
+		// 		drawArcadeButtons(8, 28, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_STICKLESSB:
+		// 		drawSticklessButtons(8, 20, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_BUTTONS_ANGLEDB:
+		// 		drawWasdButtons(8, 28, 7, 3);
+		// 		break;
+		// 	case BUTTON_LAYOUT_VEWLIX:
+		// 		drawVewlix(8, 28, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_VEWLIX7:
+		// 		drawVewlix7(8, 28, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_CAPCOM:
+		// 		drawCapcom(6, 28, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_CAPCOM6:
+		// 		drawCapcom6(16, 28, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_SEGA2P:
+		// 		drawSega2p(8, 28, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_NOIR8:
+		// 		drawNoir8(8, 28, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_KEYBOARDB:
+		// 		drawMAMEB(68, 28, 10, 1);
+		// 		break;
+		// 	case BUTTON_LAYOUT_DANCEPADB:
+		// 		drawDancepadB(39, 12, 15, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_TWINSTICKB:
+		// 		drawTwinStickB(100, 28, 8, 2);
+		// 		break;
+		// 	case BUTTON_LAYOUT_BLANKB:
+		// 		drawSticklessButtons(0, 0, 0, 0);
+		// 		break;
+		// 	case BUTTON_LAYOUT_VLXB:
+		// 		drawVLXB(6, 28, 7, 2);
+		// 		break;
+		// }
 	}
 
 	obdDumpBuffer(&obd, NULL);

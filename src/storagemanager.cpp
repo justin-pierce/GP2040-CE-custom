@@ -55,6 +55,7 @@ void Storage::setDefaultBoardOptions()
 {
 	// Set GP2040 version string and 0 mem after
 	boardOptions.hasBoardOptions   = false;
+	boardOptions.showDisplayMenu   = false;
 	boardOptions.pinDpadUp         = PIN_DPAD_UP;
 	boardOptions.pinDpadDown       = PIN_DPAD_DOWN;
 	boardOptions.pinDpadLeft       = PIN_DPAD_LEFT;
@@ -273,6 +274,11 @@ int Storage::GetSplashMode()
 int Storage::GetSplashChoice()
 {
 	return boardOptions.splashChoice;
+}
+
+bool Storage::GetShowDisplayMenu()
+{
+	return true;
 }
 
 /* Animation stuffs */

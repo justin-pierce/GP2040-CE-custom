@@ -25,6 +25,7 @@
 struct BoardOptions
 {
 	bool hasBoardOptions;
+	bool showDisplayMenu;
 	uint8_t pinDpadUp;
 	uint8_t pinDpadDown;
 	uint8_t pinDpadLeft;
@@ -164,6 +165,8 @@ public:
 
 	int GetSplashMode();
 	int GetSplashChoice();
+
+	bool GetShowDisplayMenu();
 
 private:
 	Storage() : gamepad(0) {
