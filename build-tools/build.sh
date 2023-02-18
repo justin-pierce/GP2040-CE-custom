@@ -2,6 +2,8 @@
 
 echo "Building GP2040-CE"
 
+start_time=`date +%s`
+
 # prep files
 mkdir -p artifacts
 chmod +x /usr/src/app/tools/makefsdata
@@ -16,10 +18,16 @@ npm run build
 echo "Building Firmware"
 cd -
 PICO_SDK_FETCH_FROM_GIT=true cmake -B build/ -DCMAKE_BUILD_TYPE=Release
-cmake --build build/
+cmake --build build/ --parallel
 
 # copy to artifacts folder and append timestamp to filename for lazy versioning
 cp build/GP2040-CE_0.6.0_Pico.uf2 artifacts/GP2040-CE_0.6.0_Pico_$(date +%s).uf2
+
+end_time=`date +%s`
+
+exeuction_seconds=`expr $end_time - $start_time`
+
+echo "execution time was $exeuction_seconds s."
 
 # notify me when build is done (you'll probably want to comment this out)
 curl -X POST -H "Content-Type: application/json" \
