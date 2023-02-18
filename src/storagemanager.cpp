@@ -220,6 +220,16 @@ bool Storage::GetConfigMode()
 	return CONFIG_MODE;
 }
 
+void Storage::ToggleDisplayMenu()
+{
+	showDisplayMenu = !showDisplayMenu;
+}
+
+bool Storage::GetShowDisplayMenu()
+{
+	return showDisplayMenu;
+}
+
 void Storage::SetGamepad(Gamepad * newpad)
 {
 	gamepad = newpad;

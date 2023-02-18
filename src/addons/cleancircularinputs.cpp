@@ -117,20 +117,34 @@ void CleanCircularInputs::ResetTimer()
 
 void CleanCircularInputs::process()
 {
-    // detect if ToggleActive button has been pressed
+    // game profile testing
     if(gpio_get(pinButtonToggleActive) && idlePinButtonToggleActive)
     {
-        isActive = !isActive;
-        
-        // clear input queue
-        while(!inputQueue.empty()) inputQueue.pop();
 
-        // update LED
-        gpio_put(pinActivityLED, isActive ? 1 : 0);
+        Storage::getInstance().ToggleDisplayMenu();
 
-        // so we can wait until next distinct press
+        // // so we can wait until next distinct press
         idlePinButtonToggleActive = false;
     }
+
+    
+
+    // detect if ToggleActive button has been pressed
+    // if(gpio_get(pinButtonToggleActive) && idlePinButtonToggleActive)
+    // {
+
+    //     // Storage::getInstance().ToggleDisplayMenu();
+    //     isActive = !isActive;
+
+    //     // clear input queue
+    //     while(!inputQueue.empty()) inputQueue.pop();
+
+    //     // update LED
+    //     gpio_put(pinActivityLED, isActive ? 1 : 0);
+
+    //     // so we can wait until next distinct press
+    //     idlePinButtonToggleActive = false;
+    // }
 
     // check if they've let go of button
     if(!gpio_get(pinButtonToggleActive))

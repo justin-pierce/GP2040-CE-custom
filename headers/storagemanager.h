@@ -147,6 +147,9 @@ public:
 	void SetConfigMode(bool); 			// Config Mode (on-boot)
 	bool GetConfigMode();
 
+	void ToggleDisplayMenu();           // Display Menu
+	bool GetShowDisplayMenu();
+	
 	void SetGamepad(Gamepad *); 		// MPGS Gamepad Get/Set
 	Gamepad * GetGamepad();
 
@@ -182,6 +185,7 @@ private:
 	LEDOptions ledOptions;
 	uint8_t featureData[32]; // USB X-Input Feature Data
 	SplashImage splashImage;
+	bool showDisplayMenu;
 };
 
 #endif
