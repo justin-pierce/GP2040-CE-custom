@@ -27,9 +27,9 @@ end_time=`date +%s`
 
 exeuction_seconds=`expr $end_time - $start_time`
 
-echo "execution time was $exeuction_seconds s."
+echo "execution time was $exeuction_seconds seconds."
 
 # notify me when build is done (you'll probably want to comment this out)
 curl -X POST -H "Content-Type: application/json" \
-    -d "{\"app\": \"${NOTIFY_APP}\", \"title\": \"GP2040-CE\", \"message\": \"Finished compiling!\", \"sound\": \"custom1\", \"auth\": \"${NOTIFY_KEY}\"}" \
+    -d "{\"app\": \"${NOTIFY_APP}\", \"title\": \"GP2040-CE\", \"message\": \"Finished compiling\n$exeuction_seconds seconds!\", \"sound\": \"custom1\", \"auth\": \"${NOTIFY_KEY}\"}" \
     $NOTIFY_URL
