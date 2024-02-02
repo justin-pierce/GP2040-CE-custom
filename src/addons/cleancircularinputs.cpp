@@ -19,12 +19,12 @@ void CleanCircularInputs::setup()
     // Setup Clean Circular Inputs
     BoardOptions boardOptions = Storage::getInstance().getBoardOptions();
 
-    isActive = false;
+    isActive = true;
     lastCleanDpad = 0;
     lastRealDpad = 0;
     // cleanInputDelay = boardOptions.cleanCircularInputsDelay;
     // cleanInputDelay = boardOptions.cleanCircularInputsDelayJitter;
-    cleanInputDelay = 30;
+    cleanInputDelay = 15;
     // cleanInputJitter = 5;
     nextTimer = 0;
 
@@ -36,7 +36,7 @@ void CleanCircularInputs::setup()
     gpio_pull_up(pinButtonToggleActive);          // Set as PULLUP
 
     // steal turbo LED pin until we get web configurator
-    pinActivityLED = boardOptions.pinTurboLED;
+    // pinActivityLED = boardOptions.pinTurboLED;
     if (pinActivityLED != -1)
     {
         gpio_init(pinActivityLED);              // Initialize pin
@@ -44,7 +44,7 @@ void CleanCircularInputs::setup()
         gpio_put(pinActivityLED, isActive ? 1: 0);            // Set initial value
     }
 
-    
+    ResetTimer();
 
     // srand(getMillis());
 }
@@ -112,20 +112,51 @@ void CleanCircularInputs::ResetTimer()
 
     // nextTimer = getMillis() + randomDelay;
 
-    nextTimer = getMillis() + cleanInputDelay;
+    // uIntervalMS = (uint32_t)(1000.0 / boardOptions.turboShotCount);
+
+    nextTimer = getMillis() + (uint32_t)(1000.0 / cleanInputDelay);
 }
 
 void CleanCircularInputs::process()
 {
-    // game profile testing
-    if(gpio_get(pinButtonToggleActive) && idlePinButtonToggleActive)
+    Gamepad * gamepad = Storage::getInstance().GetGamepad();
+    BoardOptions boardOptions = Storage::getInstance().getBoardOptions();
+    currentDpad = gamepad->state.dpad & GAMEPAD_MASK_DPAD;
+
+
+    // kudos
+
+    // check if we should flip
+    if(getMillis() > nextTimer)
     {
+        // toggle led
+        isActive = !isActive;
+        gpio_put(pinActivityLED, isActive ? 1 : 0);
 
-        Storage::getInstance().ToggleDisplayMenu();
+        ResetTimer();
+    }    
 
-        // // so we can wait until next distinct press
-        idlePinButtonToggleActive = false;
+    if(isActive)
+    {
+        gamepad->state.buttons = GAMEPAD_MASK_B1;
     }
+    else
+    {
+        gamepad->state.buttons = GAMEPAD_MASK_R1;
+    }
+
+    return;
+    // end kudos
+
+    // game profile testing
+    // if(gpio_get(pinButtonToggleActive) && idlePinButtonToggleActive)
+    // {
+
+    //     Storage::getInstance().ToggleDisplayMenu();
+
+    //     // // so we can wait until next distinct press
+    //     idlePinButtonToggleActive = false;
+    // }
 
     
 
@@ -153,9 +184,7 @@ void CleanCircularInputs::process()
     if(!isActive)
         return;
 
-    Gamepad * gamepad = Storage::getInstance().GetGamepad();
-    BoardOptions boardOptions = Storage::getInstance().getBoardOptions();
-    currentDpad = gamepad->state.dpad & GAMEPAD_MASK_DPAD;
+    
 
     uint16_t cleanDpad = currentDpad;
 
